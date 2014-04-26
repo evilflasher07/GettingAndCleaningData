@@ -1,4 +1,3 @@
-
 ## This script does the following:
 ## Merges the training and the test sets
 ## Extracts only the measurements on the mean and standard deviation for each measurement
@@ -36,11 +35,11 @@ X <- rbind(trainX, testX)
 Y <- rbind(trainY, testY)
 
 
-#Names for the data frame S (number of columns:1)
+#Names for the data frame S 
 names(S) <- c("SUBJECT")
 
 #Descriptive Activity Names
-#Names for the data frame Y (number of columns:1)
+#Names for the data frame Y 
 Y[,1] <- labels[Y[,1], 2]
 names(Y) <- c("ACTIVITY")
 
@@ -69,6 +68,8 @@ mergedMelt <- melt(merged, id=c("SUBJECT","ACTIVITY"), measure.vars=names(select
 #Casting data frame
 subjMelt <- dcast(mergedMelt, SUBJECT ~ variable, mean)
 moo <- dcast(mergedMelt, ACTIVITY ~ variable, mean)
+
+
 #Write the tidy set with each variable mean is computed
 write.table(subjMelt, "tidyMeanSubject.txt")
 write.table(moo, "tidyMeanActivity.txt")
